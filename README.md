@@ -1,4 +1,4 @@
 iornn-depparse
 ==============
 
-Reranking-based dependency parsing with inside-outside recursive neural network
+Reranking-based dependency parser with inside-outside recursive neural networks
