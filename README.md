@@ -48,6 +48,7 @@ Default parameter values and file names are in `ds_spec.lua`.
 
 Execute
 
+    cd source/
     mkdir your_model_dir   
     nohup th train_depparse_rerank.lua ../data/wsj-dep/universal/dic ../data/wsj-dep/universal/data collobert your_model_dir 200 >& log_train &
 
