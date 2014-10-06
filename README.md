@@ -45,7 +45,7 @@ Execute
 
 
 ####Train the reranker
-Default parameter values and file names are in `ds_spec.lua`.
+Default parameter values and file names are in `dp_spec.lua`.
 
 Execute
 
