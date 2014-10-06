@@ -777,6 +777,7 @@ function IORNN:train_with_adagrad(traindsbank, batchSize,
 	local epoch = 0
 	local j = 0
 	local percent = 0
+	local percent_stick = 0
 	--os.execute('th eval_depparser_rerank.lua '..prefix..'_'..epoch..' '..devdsbank_path..' '..kbestdevdsbank_path..'&')
 
 
@@ -788,7 +789,7 @@ function IORNN:train_with_adagrad(traindsbank, batchSize,
 		j = j + 1
 		if j > nSample/batchSize then 
 			self:save(prefix .. '_' .. epoch)
-			os.execute('th eval_depparser_rerank.lua '..prefix..'_'..epoch..' '..devdsbank_path..' '..kbestdevdsbank_path..'&')
+			os.execute('th eval_depparser_rerank.lua '..prefix..'_'..epoch..' '..devdsbank_path..' '..kbestdevdsbank_path..' /tmp/dev &')
 
 			j = 1 
 			epoch = epoch + 1
@@ -806,7 +807,7 @@ function IORNN:train_with_adagrad(traindsbank, batchSize,
 			cost, grad, subdsbank, tword  = self:computeCostAndGrad(subdsbank, 
 							{lambda = lambda.lambda, lambda_L=lambda.lambda_L}, grad)
 
-			print('iter ' .. j .. ': ' .. cost) io.flush()		
+			print('batch ' .. j .. ': ' .. cost) io.flush()		
 			return cost, grad, subdsbank, tword
 		end
 
@@ -815,10 +816,11 @@ function IORNN:train_with_adagrad(traindsbank, batchSize,
 		
 		--p:lap("optim")
 		--p:printAll()
-		local pre_percent = percent
-		percent = k+(j-1)*batchSize * 100 / nSample
-		if percent - pre_percent >= 5 then 
-			print(get_current_time() .. '      ' .. percent)
+
+		percent = j*batchSize * 100 / nSample
+		if percent >= percent_stick then 
+			print(get_current_time() .. '      ' .. string.format('%.1f%%',percent))
+			percent_stick = percent_stick + 5
 		end 
 
 		collectgarbage()

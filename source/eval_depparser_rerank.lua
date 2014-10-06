@@ -14,7 +14,7 @@ if #arg >= 3 then
 
 	print('load net')
 	local net = IORNN:load(arg[1])
-	print(net.Wh:size())
+--	print(net.Wh:size())
 
 	print('create parser')
 	local parser = Depparser:new(net.voca_dic, net.pos_dic, net.deprel_dic)
@@ -26,7 +26,7 @@ if #arg >= 3 then
 	--print(parser.mail_subject)
 
 	print('eval')
---[[
+
 	print('\n\n--- oracle-best ---')
 	parser:eval('best', kbesttreebank_path, treebank_path, output..'.oracle-best')
 
@@ -35,7 +35,7 @@ if #arg >= 3 then
 
 	print('\n\n--- first ---')
 	parser:eval('first', kbesttreebank_path, treebank_path, output..'.first')
-]]
+
 	print('\n\n--- rescore ---')
 	parser:eval(net, kbesttreebank_path, treebank_path, kbesttreebank_path..'.iornnscores')
 
@@ -43,5 +43,5 @@ if #arg >= 3 then
 	parser:eval(kbesttreebank_path..'.iornnscores', kbesttreebank_path, treebank_path, output..'.reranked')
 
 else
-	print("[network] [gold/input] [kbest] [output]")
+	print("[net] [gold/input] [kbest] [output]")
 end
