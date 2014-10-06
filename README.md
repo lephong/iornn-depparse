@@ -41,6 +41,7 @@ Execute
      cd tools/mstparser/
      ./train.sh #train the MSTParser on train.conll (you may need to change paths)
      ./kbest.sh #generate k-best lists for dev.conll and test.conll (you may need to change paths and K)
+     cp experiment/dev-10-best-mst2ndorder.* experiment/test-10-best-mst2ndorder.* ../../data/wsj-dep/universal/data/
 
 
 ####Train the reranker
