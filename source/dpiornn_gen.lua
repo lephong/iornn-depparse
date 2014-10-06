@@ -257,7 +257,9 @@ end
 -- save net into a file
 function IORNN:save( filename , binary )
 	local file = torch.DiskFile(filename, 'w')
-	if binary == nil or binary then file:binary() end
+	--if binary == nil or binary then file:binary() end
+	if binary == true then file:binary() end
+
 	file:writeObject(self)
 	file:close()
 end
@@ -265,7 +267,9 @@ end
 -- create net from file
 function IORNN:load( filename , binary, func, funcPrime )
 	local file = torch.DiskFile(filename, 'r')
-	if binary == nil or binary then file:binary() end
+	--if binary == nil or binary then file:binary() end
+	if binary == true then file:binary() end
+
 	local net = file:readObject()
 	file:close()
 
@@ -817,7 +821,7 @@ function IORNN:train_with_adagrad(traindsbank, batchSize,
 		--p:lap("optim")
 		--p:printAll()
 
-		percent = j*batchSize * 100 / nSample
+		percent = math.min(j*batchSize * 100 / nSample,100)
 		if percent >= percent_stick then 
 			print(get_current_time() .. '      ' .. string.format('%.1f%%',percent))
 			percent_stick = percent_stick + 5

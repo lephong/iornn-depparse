@@ -376,6 +376,7 @@ function Depparser:eval(typ, kbestpath, goldpath, output)
 
 			if K_range == nil then K_range = {K,K} end
 			if alpha_range == nil then alpha_range = {alpha,alpha} end
+			print('k\talpha\tUAS\tLAS')
 
 			-- search for best K and alpha
 			for k = K_range[1],K_range[2] do
@@ -391,7 +392,6 @@ function Depparser:eval(typ, kbestpath, goldpath, output)
 						best_LAS = LAS
 					end
 				end
-				print('k\talpha\tUAS\tLAS')
 				print(k .. '\t' .. best_alpha .. '\t' .. string.format('%.2f',best_UAS) .. '\t' .. string.format('%.2f',best_LAS))
 			end
 		end

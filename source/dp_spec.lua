@@ -48,12 +48,12 @@ TRAIN_VOCA_LEARNING_RATE	= 0.1
 
 -- for eval
 EVAL_TOOL_PATH	= '../tools/eval-dep.pl'
-EVAL_EMAIL_ADDR	= 'lephong.xyz@gmail.com'
+--EVAL_EMAIL_ADDR	= 'lephong.xyz@gmail.com'
 
-K		= 9
-alpha	= 0.68
+K		= 10
+alpha	= 0
 
---K_range	= {1,10} -- to choose K [for development], set nil when testing
---alpha_range = {0,1} -- to choose alpha (alpha * mstscore + (1-alpha) * iornnscore) [for development] set nil when testing
+K_range	= nil -- to choose K [for development], set nil when testing
+alpha_range = nil -- to choose alpha (alpha * mstscore + (1-alpha) * iornnscore) [for development] set nil when testing
 punc = true -- taking punc into account for evaluation 
 

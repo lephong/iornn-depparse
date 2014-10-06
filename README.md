@@ -45,13 +45,19 @@ Execute
 
 
 ####Train the reranker
-Default parameter values and file names are in `dp_spec.lua`.
+Open `dp_spec.lua`, which stores the default parameter values and file names. Set 
+
+    K = 10  
+    alpha = 0   
+    K_range = nil
+    alpha_range = nil 
+
 
 Execute
 
     cd source/
     mkdir your_model_dir   
-    nohup th train_depparse_rerank.lua ../data/wsj-dep/universal/dic ../data/wsj-dep/universal/data collobert your_model_dir 200 >& log_train &
+    nohup th train_depparser_rerank.lua ../data/wsj-dep/universal/dic ../data/wsj-dep/universal/data collobert your_model_dir 200 >& log_train &
 
 A trained model after each epoch is stored in `your_model_dir`.
 
@@ -64,11 +70,11 @@ After each epoch, `dev.conll` is evaluated with UAS and LAS metrics. Pick the mo
 
 ####Optimise K and alpha
 
-Open `dp_spec.lua`, set `K_range = {1,10}`, `alpha_range = {0,1}`.
+Open `source/dp_spec.lua`, set `K_range = {1,10}`, `alpha_range = {0,1}`.
 
 Execute
 
-    th eval_depparse_rerank.lua your_model_path ../data/wsj-dep/universal/data/dev.conll ../data/wsj-dep/universal/data/dev-10-best-mst2ndorder.conll your_output
+    th eval_depparser_rerank.lua your_model_path ../data/wsj-dep/universal/data/dev.conll ../data/wsj-dep/universal/data/dev-10-best-mst2ndorder.conll your_output
 
 Pick `K` and `alpha` that achieve the highest UAS (9 and 0.68 in our experiments).
 
@@ -79,7 +85,7 @@ Open `dp_spec.lua`, set `K` and `alpha` with the found values, set `K_range = ni
 
 Execute
 
-    th eval_depparse_rerank.lua your_model_path ../data/wsj-dep/universal/data/test.conll ../data/wsj-dep/universal/data/test-10-best-mst2ndorder.conll your_output
+    th eval_depparser_rerank.lua your_model_path ../data/wsj-dep/universal/data/test.conll ../data/wsj-dep/universal/data/test-10-best-mst2ndorder.conll your_output
 
 You should get a UAS around 93.08%.
 
