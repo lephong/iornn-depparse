@@ -3,18 +3,18 @@ iornn-depparse
 
 A Lua implementation of the reranking-based dependency parser using inside-outside recursive neural networks described in
 
-[1] Phong Le and Willem Zuidema (2014). The Inside-Outside Recursive Neural Network model for Dependency Parsing. In Proceedings of the Conference on Empirical Methods in Natural Language Processing (EMNLP).
+[1] Phong Le and Willem Zuidema (2014). [The Inside-Outside Recursive Neural Network model for Dependency Parsing](https://drive.google.com/file/d/0B9oyNs4QrsowMTRiMGJ5VjA0LXc/edit?usp=sharing). In Proceedings of the Conference on Empirical Methods in Natural Language Processing (EMNLP).
 
 Written and maintained by Phong Le (p.le [at] uva.nl)
 
 ###Package
 This package contains three components
 
-+ `source/` contains source code files in Lua of the IORNN reranker,
++ `source/` - source code files in Lua of the IORNN reranker,
 
-+ `tools/mstparser/` contains an extension of the [MSTParser 0.5.1](http://sourceforge.net/projects/mstparser/) which can now generate k-best candidates,
++ `tools/mstparser/` - the [MSTParser 0.5.1](http://sourceforge.net/projects/mstparser/) which the option of generating k-best candidates is "unlocked",
 
-+ `data/wsj-dep/universal/dic/` contains the word list, POS list, dependent relation list and Collobert & Weston word embeddings for the experiments on the WSJ-U.
++ `data/wsj-dep/universal/dic/` - the word list, POS list, dependent relation list and Collobert & Weston word embeddings for our experiments on the WSJ-U.
 
 
 ###Installation
